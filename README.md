@@ -6,8 +6,8 @@
 
 ## Template ToDo list
 - [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Get familiar with the [template documentation][template].
-- [ ] Adjust the [pluginGroup](./gradle.properties), [plugin ID](./src/main/resources/META-INF/plugin.xml) and [sources package](./src/main/kotlin).
+- [x] Get familiar with the [template documentation][template].
+- [x] Adjust the [pluginGroup](./gradle.properties), [plugin ID](./src/main/resources/META-INF/plugin.xml) and [sources package](./src/main/kotlin).
 - [ ] Adjust the plugin description in `README` (see [Tips][docs:plugin-description])
 - [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
 - [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
@@ -39,6 +39,27 @@ To keep everything working, do not remove `<!-- ... -->` sections.
 
 ---
 Plugin based on the [IntelliJ Platform Plugin Template][template].
+
+# Roadmap
+## Features List
+- [ ] Allow extracting struct definition from params
+  - [x] dynamically create struct definition
+  - [x] place struct definition in a consistent spot
+  - [x] replace params with the struct
+  - [x] replace parameter usages with struct fields
+  - [x] find all calls to the func/method
+  - [x] dynamically construct struct with caller params
+  - [x] replace caller params
+  - [x] deal with package references
+  - [ ] add import statement when needed
+- [ ] Allow extracting struct from return params
+  - [ ] TBD...
+  - [ ] named returns
+- [ ] Allow customization of struct names and fields
+  - [ ] TBD...
+- [ ] Allow partial extractions
+  - [ ] TBD...
+
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
 [docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation

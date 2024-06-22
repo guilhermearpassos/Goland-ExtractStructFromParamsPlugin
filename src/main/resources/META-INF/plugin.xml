@@ -1,18 +1,17 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.guilhermearpassos.demoplugin</id>
-    <name>demoPlugin</name>
+    <id>com.github.guilhermearpassos.extractStructFromParams</id>
+    <name>ExtractStructFromParams</name>
     <vendor>guilhermearpassos</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.go</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <depends>com.intellij.modules.goland</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.guilhermearpassos.demoplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-    </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.guilhermearpassos.demoplugin.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
+    <actions>
+        <action class="com.github.guilhermearpassos.demoplugin.actions.ExtractStructAction" text="Extract Struct..." id="extractstruct">
+            <add-to-group group-id="RefactoringMenu" anchor="first"/>
+        </action>
+    </actions>
 </idea-plugin>
