@@ -16,7 +16,6 @@ import com.intellij.psi.util.childrenOfType
 import com.intellij.psi.util.elementType
 import com.intellij.refactoring.RefactoringActionHandler
 import com.intellij.refactoring.lang.ElementsHandler
-import com.intellij.refactoring.suggested.startOffset
 
 
 class ExtractStructGenHandler : RefactoringActionHandler, ElementsHandler {
@@ -114,7 +113,10 @@ class ExtractStructGenHandler : RefactoringActionHandler, ElementsHandler {
                 act.run()
             }
             parameters.replace(GoElementFactory.createExpression(project, "(params *$structName)"))
-            document.insertString(element.startOffset, "\n" + structText + "\n")
+
+            val structDeclFile = GoElementFactory.createFileFromText(project, "package a\n" + structText + "\n")
+            element.parent.addRangeBefore(structDeclFile.children[2], structDeclFile.children[4], element)
+//            document.insertString(element.startOffset, )
             return@runWriteCommandAction Unit
         }
 
