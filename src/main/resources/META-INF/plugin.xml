@@ -2,7 +2,8 @@
 <idea-plugin>
     <id>com.github.guilhermearpassos.extractStructFromParams</id>
     <name>ExtractStructFromParams</name>
-    <vendor>guilhermearpassos</vendor>
+    <vendor>guilhermePassos</vendor>
+    
 
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.plugins.go</depends>

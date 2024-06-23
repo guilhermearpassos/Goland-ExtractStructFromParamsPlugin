@@ -1,7 +1,10 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# demoPlugin Changelog
+# ExtractStructFromParams Changelog
 
 ## [Unreleased]
 ### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+- allow for extracting input params into struct from functions/methods
+- correctly replace param usages inside the function's body
+- correctly replace caller params with struct
+- correctly add package on struct usage from other packages

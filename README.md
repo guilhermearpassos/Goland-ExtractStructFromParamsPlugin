@@ -1,65 +1,96 @@
-# demoPlugin
+Extract Struct From Params
+=======================
 
-![Build](https://github.com/guilhermearpassos/demoPlugin/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+Plugin for Goland. Use it to extract long lists of function/method parameters into input Struct
 
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [x] Get familiar with the [template documentation][template].
-- [x] Adjust the [pluginGroup](./gradle.properties), [plugin ID](./src/main/resources/META-INF/plugin.xml) and [sources package](./src/main/kotlin).
-- [ ] Adjust the plugin description in `README` (see [Tips][docs:plugin-description])
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the `PLUGIN_ID` in the above README badges.
-- [ ] Set the [Plugin Signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate) related [secrets](https://github.com/JetBrains/intellij-platform-plugin-template#environment-variables).
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html?from=IJPluginTemplate).
-- [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
+What does it do?
+----------------
 
-<!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+For example, if you have a funcion (or method) with multiple input parameters:
+```go
+func DoSomethingWithManyParams(firstParam string, secondParam string, myAwesomeParam string, myAwesomeBool bool) {
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+}
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
-<!-- Plugin description end -->
+func main() {
+    DoSomethingWithManyParams("a", "bc", "de", true)
+}
+```
+And you'd rather have something like this:
+```go
+type ParamsStruct struct {
+    FirstParam string
+    SecondParam string
+    MyAwesomeParam string
+    MyAwesomeBool bool
+}
+func DoSomethingWithManyParams(params *ParamsStruct) {
 
-## Installation
+}
+func main() {
+    DoSomethingWithManyParams(&ParamStruct{
+        FirstParam: "a",
+        SecondParam: "bc",
+        MyAwesomeParam: "de",
+        MyAwesomeBool: true
+	},
+	)
+}
+```
+You do not need to manually create the struct and replace into all usages.
+Just select the function definition
+<kbd>right mouse button</kbd> >  <kbd>refactor</kbd> > <kbd>extract struct ...</kbd>
+
+
+How to install?
+---------------
 
 - Using the IDE built-in plugin system:
-  
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "demoPlugin"</kbd> >
+
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "ExtractStructFromParams"</kbd> >
   <kbd>Install</kbd>
-  
+
 - Manually:
 
-  Download the [latest release](https://github.com/guilhermearpassos/demoPlugin/releases/latest) and install it manually using
+  Download the [latest release](https://github.com/guilhermearpassos/Goland-ExtractStructFromParamsPlugin/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
+Some important notes:
+---------------------
+* First of all, this plugin works only in files with extension `*.go`, for example, "main.go".
+* For now there is no customization on names for params and new structType
+* Final text might need formatting to comply with proper GO spacing
+* Cursor must be on the function/method definition, not usages.
 
----
-Plugin based on the [IntelliJ Platform Plugin Template][template].
+What can I write?
+-----------------
+```go
+// From
+func DoSomethingWithManyParams(firstParam string, secondParam string, myAwesomeParam string, myAwesomeBool bool) {
 
-# Roadmap
-## Features List
-- [ ] Allow extracting struct definition from params
-  - [x] dynamically create struct definition
-  - [x] place struct definition in a consistent spot
-  - [x] replace params with the struct
-  - [x] replace parameter usages with struct fields
-  - [x] find all calls to the func/method
-  - [x] dynamically construct struct with caller params
-  - [x] replace caller params
-  - [x] deal with package references
-  - [ ] add import statement when needed
-- [ ] Allow extracting struct from return params
-  - [ ] TBD...
-  - [ ] named returns
-- [ ] Allow customization of struct names and fields
-  - [ ] TBD...
-- [ ] Allow partial extractions
-  - [ ] TBD...
+}
 
+func main() {
+    DoSomethingWithManyParams("a", "bc", "de", true)
+}
+// To (refactor > extract struct
+type ParamsStruct struct {
+    FirstParam string
+    SecondParam string
+    MyAwesomeParam string
+    MyAwesomeBool bool
+}
+func DoSomethingWithManyParams(params *ParamsStruct) {
 
-[template]: https://github.com/JetBrains/intellij-platform-plugin-template
-[docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation
+}
+func main() {
+    DoSomethingWithManyParams(&ParamStruct{
+        FirstParam: "a",
+        SecondParam: "bc",
+        MyAwesomeParam: "de",
+        MyAwesomeBool: true
+	},
+	)
+}
+
+```
