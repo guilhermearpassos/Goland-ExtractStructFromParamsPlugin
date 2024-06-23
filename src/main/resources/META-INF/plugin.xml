@@ -11,7 +11,7 @@
     <depends>com.intellij.modules.goland</depends>
 
     <actions>
-        <action class="com.github.guilhermearpassos.demoplugin.actions.ExtractStructAction" text="Extract Struct..." id="extractstruct">
+        <action class="com.github.guilhermearpassos.extractStructFromParams.actions.ExtractStructAction" text="Extract Struct..." id="extractstruct">
             <add-to-group group-id="RefactoringMenu" anchor="first"/>
         </action>
     </actions>

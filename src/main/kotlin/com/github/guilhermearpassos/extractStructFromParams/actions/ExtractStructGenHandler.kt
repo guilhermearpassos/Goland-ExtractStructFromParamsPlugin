@@ -1,4 +1,4 @@
-package com.github.guilhermearpassos.demoplugin.actions
+package com.github.guilhermearpassos.extractStructFromParams.actions
 
 import ai.grazie.utils.capitalize
 import com.goide.GoTypes.*

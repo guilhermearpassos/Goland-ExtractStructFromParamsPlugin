@@ -1,4 +1,4 @@
-package com.github.guilhermearpassos.demoplugin.actions
+package com.github.guilhermearpassos.extractStructFromParams.actions
 import com.intellij.lang.refactoring.RefactoringSupportProvider
 import com.intellij.refactoring.RefactoringActionHandler
 import com.intellij.refactoring.actions.BasePlatformRefactoringAction
