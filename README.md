@@ -1,9 +1,8 @@
 # Extract Struct From Params
 
-![Build](https://github.com/guilhermearpassos/extractStructFromParams/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-
+![Build](https://github.com/guilhermearpassos/Goland-ExtractStructFromParamsPlugin/workflows/Build/badge.svg)
+[![Version](https://img.shields.io/jetbrains/plugin/v/24704.svg)](https://plugins.jetbrains.com/plugin/24704)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/24704.svg)](https://plugins.jetbrains.com/plugin/24704)
 
 ## What does it do?
 
@@ -15,6 +14,9 @@ Plugin for Goland. Use it to extract long lists of function/method parameters in
 ### Example
 
 For example, if you have a funcion (or method) with multiple input parameters:
+
+To use, select a function/method with params you want to extract and <kbd>right mouse button</kbd> >  <kbd>refactor</kbd> > <kbd>extract struct ...</kbd>
+
 ```go
 func DoSomethingWithManyParams(firstParam string, secondParam string, myAwesomeParam string, myAwesomeBool bool) {
 
